@@ -48,6 +48,7 @@ private  TabLayout tab;
             if(grantResults[i] == PackageManager.PERMISSION_DENIED){
                 Toast.makeText(this, "Poxa", Toast.LENGTH_SHORT).show();
             }
+
         }
     }
     @Override
