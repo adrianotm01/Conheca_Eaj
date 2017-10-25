@@ -6,25 +6,45 @@
     app:cardBackgroundColor="@color/cardview_light_background"
     android:focusable="true"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground">
-<LinearLayout
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="178dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    app:contentPadding="10dp">
+<TableLayout
+     android:layout_width="match_parent"
+    android:layout_height="80dp"
     android:gravity="center_vertical">
-
+<TableRow>
     <ImageView
-        android:id="@+id/imagem"
+        android:id="@+id/telefoneImagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_call_black_24dp" />
+
+    <TextView
+        android:id="@+id/fone"
         android:layout_width="0dp"
-        android:layout_height="226dp"
+        android:layout_height="wrap_content"
         android:layout_weight="5"
-        app:srcCompat="@drawable/teste" />
+        android:layout_gravity="center"
+        android:text="Telefone" />
 
     <TextView
         android:id="@+id/nome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="5"
-        android:paddingLeft="20dp"
-        android:text="IMD" />
-</LinearLayout>
+        android:layout_gravity="center"
+        android:text="Local" />
+
+    </TableRow>
+</TableLayout>
+
 </android.support.v7.widget.CardView>

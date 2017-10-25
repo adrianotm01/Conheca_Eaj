@@ -62,7 +62,8 @@ public class Fragmento1 extends Fragment{
 
     public void listar(){
         list = new ArrayList<>();
-        list.add(new Imagem("INSTITUTO METROPOLE DIGITAL",R.drawable.teste));
-        list.add(new Imagem("ESCOLA AGRICOLA JUNDIAI",R.drawable.eaj));
+        list.add(new Imagem("INSTITUTO METROPOLE DIGITAL",R.drawable.teste,"(84) 3342-2216"));
+        list.add(new Imagem("ESCOLA AGRICOLA JUNDIAI",R.drawable.eaj,"(84) 3342-4815"));
+
     }
 }

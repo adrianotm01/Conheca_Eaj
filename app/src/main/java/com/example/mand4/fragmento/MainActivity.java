@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET
     };
 //    private GoogleApiClient mGoogleApiClient;
-
+private  TabLayout tab;
 
 
     @Override
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ViewPager pager = (ViewPager) findViewById(R.id.page);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
-        TabLayout tab = (TabLayout) findViewById(R.id.tab);
+       tab = (TabLayout) findViewById(R.id.tab);
         tab.setupWithViewPager(pager);
         tab.getTabAt(0).setText("Fragmento 1");
     }
@@ -63,4 +63,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    @Override
+    public void onBackPressed() {
+        if(tab != null){
+            tab.getTabAt()
+        }
+    }
 }

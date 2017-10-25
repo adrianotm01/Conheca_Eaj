@@ -62,7 +62,7 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment2, container, false);
-        getRoute();
+
         localizacao = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         flag = (TextView) getActivity().findViewById(R.id.textView);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -120,6 +120,7 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
         if(flag.getText().toString().equals("true")) {
             if (locationTeste != null) {
                 latitudeMinha = new LatLng(locationTeste.getLatitude(), locationTeste.getLongitude());
+                getRoute(latitudeMinha,new LatLng(-5.885650, -35.364258));
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latitudeMinha, 18));
             }
             if ((ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
@@ -135,11 +136,11 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
 
     }
 
-    public void getRoute(){
+    public void getRoute(LatLng origem, LatLng destino){
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url= "http://maps.googleapis.com/maps/api/directions/json?origin="
-                + origin.latitude+","+origin.longitude+"&destination="
-                + destination.latitude+","+destination.longitude+"&sensor=false";
+                + origem.latitude+","+origem.longitude+"&destination="
+                + destino.latitude+","+destino.longitude+"&sensor=false";
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,new Response.Listener<String>() {

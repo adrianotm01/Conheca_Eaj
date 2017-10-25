@@ -10,10 +10,11 @@ public class Imagem {
 
     private String nome;
     private int imagem;
-
-    public Imagem(String nome, int imagem) {
+    private String telefone;
+    public Imagem(String nome, int imagem,String telefone) {
         this.nome = nome;
         this.imagem = imagem;
+        this.telefone = telefone;
     }
 
     public String getNome() {
@@ -30,5 +31,13 @@ public class Imagem {
 
     public void setImagem(int imagem) {
         this.imagem = imagem;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

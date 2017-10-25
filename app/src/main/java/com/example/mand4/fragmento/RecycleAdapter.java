@@ -25,7 +25,7 @@ public class RecycleAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ImagemHolder im = (ImagemHolder) holder;
         im.getNome().setText(list.get(position).getNome());
-        im.getImg().setImageResource(list.get(position).getImagem());
+        im.getFone().setText(list.get(position).getTelefone());
     }
 
     public int getItemCount(){

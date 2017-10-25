@@ -13,11 +13,12 @@ public class ImagemHolder extends RecyclerView.ViewHolder {
 
     private TextView nome;
     private ImageView img;
-
+    private TextView fone;
     public ImagemHolder(View view) {
         super(view);
         this.nome = view.findViewById(R.id.nome);
-        this.img = view.findViewById(R.id.imagem);
+        this.img = view.findViewById(R.id.telefoneImagem);
+        this.fone = view.findViewById(R.id.fone);
     }
 
     public TextView getNome() {
@@ -34,5 +35,13 @@ public class ImagemHolder extends RecyclerView.ViewHolder {
 
     public void setImg(ImageView img) {
         this.img = img;
+    }
+
+    public TextView getFone() {
+        return fone;
+    }
+
+    public void setFone(TextView fone) {
+        this.fone = fone;
     }
 }
