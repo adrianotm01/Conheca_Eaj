@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.renderscript.Double2;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -58,11 +59,14 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
     private Location locationTeste;
     private LatLng latitudeMinha;
     private TextView flag;
+    private TextView latitude,longitude,nome;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment2, container, false);
-
+        nome = (TextView) getActivity().findViewById(R.id.fragmentotexto3);
+        longitude = (TextView) getActivity().findViewById(R.id.longitude);
+        latitude = (TextView) getActivity().findViewById(R.id.latitude);
         localizacao = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         flag = (TextView) getActivity().findViewById(R.id.textView);
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -120,14 +124,12 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
         if(flag.getText().toString().equals("true")) {
             if (locationTeste != null) {
                 latitudeMinha = new LatLng(locationTeste.getLatitude(), locationTeste.getLongitude());
-                getRoute(latitudeMinha,new LatLng(-5.885650, -35.364258));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latitudeMinha, 18));
+                googleMap.addMarker(new MarkerOptions().title(nome.getText().toString()).position(new LatLng(Double.parseDouble(latitude.getText().toString()),
+                        Double.parseDouble(longitude.getText().toString()))));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(latitude.getText().toString()),
+                        Double.parseDouble(longitude.getText().toString())), 18));
             }
             if ((ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
-
-                if (locationTeste != null)
-                    googleMap.addPolyline(new PolylineOptions().geodesic(true).add(latitudeMinha, new LatLng(-5.885650, -35.364258),
-                            new LatLng(latitudeMinha.latitude + 0.15, latitudeMinha.longitude)));
             }
         }else{
             googleMap.addMarker(new MarkerOptions().position(new LatLng(-5.885650,-35.364258)).title("EAJ"));
@@ -136,25 +138,4 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
 
     }
 
-    public void getRoute(LatLng origem, LatLng destino){
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url= "http://maps.googleapis.com/maps/api/directions/json?origin="
-                + origem.latitude+","+origem.longitude+"&destination="
-                + destino.latitude+","+destino.longitude+"&sensor=false";
-
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                // Display the first 500 characters of the response string.
-               Log.i("resposta",response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        });
-
-        queue.add(stringRequest);
-    }
 }

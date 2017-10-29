@@ -37,7 +37,7 @@ public class PageAdapter extends FragmentPagerAdapter{
     public CharSequence getPageTitle(int position){
         switch (position){
             case 0:
-                return "Tab1";
+                return "Fragmento 1";
             case 1:
                 return "Fragmento 2";
             case 2:

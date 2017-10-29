@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -43,13 +45,15 @@ public class Fragmento1 extends Fragment{
             @Override
             public void onItemClick(View view, int posicao) {
                 TabLayout tab = (TabLayout)getActivity().findViewById(R.id.tab);
-
-
                 ImageView view1 = (ImageView) getActivity().findViewById(R.id.imageView3) ;
                 view1.setImageResource(list.get(posicao).getImagem());
                 TextView imageView = (TextView) getActivity().findViewById(R.id.fragmentotexto3);
                 imageView.setText(list.get(posicao).getNome());
                 TextView flag = (TextView) getActivity().findViewById(R.id.textView);
+                TextView longitude = (TextView) getActivity().findViewById(R.id.longitude);
+                longitude.setText(""+list.get(posicao).getLatitudeLong().longitude);
+                TextView latitude = (TextView) getActivity().findViewById(R.id.latitude);
+                latitude.setText(""+list.get(posicao).getLatitudeLong().latitude);
                 flag.setText("true");
                 tab.getTabAt(1).select();
 
@@ -62,8 +66,11 @@ public class Fragmento1 extends Fragment{
 
     public void listar(){
         list = new ArrayList<>();
-        list.add(new Imagem("INSTITUTO METROPOLE DIGITAL",R.drawable.teste,"(84) 3342-2216"));
-        list.add(new Imagem("ESCOLA AGRICOLA JUNDIAI",R.drawable.eaj,"(84) 3342-4815"));
+        list.add(new Imagem("Informática",R.drawable.teste,"(84) 3342-2216",new LatLng(-5.885786, -35.365748)));
+        list.add(new Imagem("CVT",R.drawable.eaj,"(84) 3342-4815", new LatLng(-5.884567, -35.364924)));
+        list.add(new Imagem("Aquicultura",R.drawable.aquicultura,"(84) 3213-5214", new LatLng(-5.887602, -35.361685)));
+        list.add(new Imagem("Biblioteca",R.drawable.biblioteca,"(84) 3214-5123",new LatLng(-5.885911, -35.366131)));
+        list.add(new Imagem("Ensino Médio",R.drawable.ensinomeido,"(84) 3246-5482",new LatLng(-5.885205, -35.364782)));
 
     }
 }

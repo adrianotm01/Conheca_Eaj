@@ -11,6 +11,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -26,18 +28,35 @@ public class MainActivity extends AppCompatActivity {
     };
 //    private GoogleApiClient mGoogleApiClient;
 private  TabLayout tab;
-
+private int posicao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         ViewPager pager = (ViewPager) findViewById(R.id.page);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
        tab = (TabLayout) findViewById(R.id.tab);
         tab.setupWithViewPager(pager);
-        tab.getTabAt(0).setText("Fragmento 1");
+        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                posicao = tab.getPosition();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
 
@@ -66,8 +85,11 @@ private  TabLayout tab;
 
     @Override
     public void onBackPressed() {
-        if(tab != null){
-            tab.getTabAt()
-        }
+
+            if(posicao > 0)
+                tab.getTabAt(0).select();
+            else
+                finish();
+
     }
 }
