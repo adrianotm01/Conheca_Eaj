@@ -3,6 +3,7 @@ package com.example.mand4.fragmento;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.renderscript.Double2;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -60,6 +62,7 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
     private LatLng latitudeMinha;
     private TextView flag;
     private TextView latitude,longitude,nome;
+    private AlertDialog.Builder alertDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -69,6 +72,21 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
         latitude = (TextView) getActivity().findViewById(R.id.latitude);
         localizacao = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         flag = (TextView) getActivity().findViewById(R.id.textView);
+         alertDialog =  new AlertDialog.Builder(getActivity());
+        alertDialog.setMessage("Para continuar, permita que o dispositivo ative a localização que usa o serviço de localização");
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+        alertDialog.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                getActivity().finish();
+            }
+        });
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
         }
@@ -129,6 +147,10 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(latitude.getText().toString()),
                         Double.parseDouble(longitude.getText().toString())), 18));
             }
+            else{
+                alertDialog.create();
+                alertDialog.show();
+            }
             if ((ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
             }
         }else{
@@ -137,5 +159,6 @@ public class Fragmento2 extends Fragment implements LocationListener, OnMapReady
         }
 
     }
+
 
 }

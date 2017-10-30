@@ -9,6 +9,7 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="226dp"
+        android:visibility="gone"
  />
 
     <TextView
@@ -22,9 +23,11 @@
         android:id="@+id/fragmentotexto3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_gravity="center"
         android:layout_marginTop="50dp"
- />
+        android:text="TextView"
+        android:textSize="25dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/latitude"
@@ -36,8 +39,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="TextView"
- />
+        android:textSize="25dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textView"
@@ -45,4 +50,12 @@
         android:layout_height="wrap_content"
         android:text="false"
         android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/nenhum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nenhum Local foi Selecionado"
+        android:gravity="center"
+        />
 </LinearLayout>

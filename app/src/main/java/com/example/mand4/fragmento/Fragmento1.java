@@ -47,13 +47,20 @@ public class Fragmento1 extends Fragment{
                 TabLayout tab = (TabLayout)getActivity().findViewById(R.id.tab);
                 ImageView view1 = (ImageView) getActivity().findViewById(R.id.imageView3) ;
                 view1.setImageResource(list.get(posicao).getImagem());
+                view1.setVisibility(View.VISIBLE);
                 TextView imageView = (TextView) getActivity().findViewById(R.id.fragmentotexto3);
                 imageView.setText(list.get(posicao).getNome());
+                imageView.setVisibility(View.VISIBLE);
                 TextView flag = (TextView) getActivity().findViewById(R.id.textView);
                 TextView longitude = (TextView) getActivity().findViewById(R.id.longitude);
                 longitude.setText(""+list.get(posicao).getLatitudeLong().longitude);
                 TextView latitude = (TextView) getActivity().findViewById(R.id.latitude);
                 latitude.setText(""+list.get(posicao).getLatitudeLong().latitude);
+                TextView telefone = (TextView) getActivity().findViewById(R.id.textView2);
+                telefone.setText(list.get(posicao).getTelefone());
+                telefone.setVisibility(View.VISIBLE);
+                TextView nenhum = (TextView) getActivity().findViewById(R.id.nenhum);
+                nenhum.setVisibility(View.GONE);
                 flag.setText("true");
                 tab.getTabAt(1).select();
 
